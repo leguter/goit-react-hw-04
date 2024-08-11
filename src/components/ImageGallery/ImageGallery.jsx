@@ -1,6 +1,6 @@
 import ImgCard from "../ImgCard/ImgCard";
-const ImageGallery = (getImgs) => {
-   getImgs()
+const ImageGallery = (dataImg) => {
+ console.log(dataImg)
   return (
     <ul>
       {/* {dataImg.map} */}
