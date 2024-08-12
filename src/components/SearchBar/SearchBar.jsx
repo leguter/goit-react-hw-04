@@ -1,21 +1,27 @@
+import { Formik, Form,Field } from "formik"
 const SearchBar = ({
   sendQuery,
 }
 ) => {
-  let form = document.form;
-  console.log(form.elements.search);
-    return (
-      <header>
-        <form name='searchImgs'onSubmit={() => sendQuery(form.elements.search.value) }>
-          <input
+  const INITIAL_VALUES = {
+    search: '',
+  }
+  const handleSubmit = (values) => {
+    sendQuery(values.search)
+ }
+  return (
+    <Formik onSubmit={handleSubmit} initialValues={INITIAL_VALUES}>
+      
+        <Form>
+          <Field
             type="text"
             placeholder="Search images and photos"
             name="search"
           />
           <button type="submit">Search</button>
-        </form>
-      </header>
-    );
+        </Form>
+    </Formik>
+  );
 }
    
 
