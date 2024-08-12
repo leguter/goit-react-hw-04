@@ -2,7 +2,7 @@ const SearchBar = ({
   sendQuery,
 }
 ) => {
-  let form = document.forms.searchImgs;
+  let form = document.form;
   console.log(form.elements.search);
     return (
       <header>
