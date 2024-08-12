@@ -1,13 +1,18 @@
 import ImgCard from "../ImgCard/ImgCard";
-const ImageGallery = ({ dataImg }) => {
- console.log(dataImg)
+const ImageGallery = ({ dataImgs }) => {
+ console.log(dataImgs)
   return (
     <ul>
-      {/* {dataImg.map} */}
-      <li>
-        <ImgCard />
-      </li>
+      {dataImgs.map((dataImg) => {
+      <li key={dataImg.id}>
+        <ImgCard
+          smallImg={dataImg.urls.small}
+          description={dataImg.alt_description}
+        />
+      </li>;
+      })}
     </ul>
+    
   );
 }
 
