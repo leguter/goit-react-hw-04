@@ -5,7 +5,7 @@ const ImgCard =  ({
 }) => {
     return (
     <div>
-      <img src={smallImg} alt={description} />
+      <img src={smallImg} alt={description} width='300' height='300'/>
     </div>
   );
 }

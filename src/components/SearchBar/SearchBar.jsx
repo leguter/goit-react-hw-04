@@ -1,11 +1,16 @@
-const SearchBar = (
+const SearchBar = ({
+  sendQuery,
+}
 ) => {
+  let form = document.forms.searchImgs;
+  console.log(form.elements.search);
     return (
       <header>
-        <form>
+        <form name='searchImgs'onSubmit={() => sendQuery(form.elements.search.value) }>
           <input
             type="text"
             placeholder="Search images and photos"
+            name="search"
           />
           <button type="submit">Search</button>
         </form>
