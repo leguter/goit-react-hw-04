@@ -1,5 +1,5 @@
 import ImgCard from "../ImgCard/ImgCard";
-const ImageGallery = (dataImg) => {
+const ImageGallery = ({ dataImg }) => {
  console.log(dataImg)
   return (
     <ul>
