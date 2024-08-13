@@ -18,16 +18,12 @@ function App() {
   const [page, setPage] = useState(1)
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [urlModalImg, setUrlModalImg] = useState('')
-   let subtitle;
    function openModal(value) {
      setIsOpen(true);
      setUrlModalImg(value);
    }
 
-   function afterOpenModal() {
-     // references are now sync'd and can be accessed.
-     subtitle.style.color = "#f00";
-   }
+   
   function closeModal() {
     setIsOpen(false);
   }
@@ -56,6 +52,7 @@ function App() {
         }
       } catch (error) {
         iziToast.error(error);
+        setErr(true)
       } finally {
         setLoader(false)
       }
@@ -84,7 +81,6 @@ function App() {
       )}
       {query !== null && (
         <ImageModal
-          afterOpenModal={afterOpenModal}
           modalIsOpen={modalIsOpen}
           imgModal={urlModalImg}
           closeModal={closeModal}
