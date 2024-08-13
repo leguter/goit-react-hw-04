@@ -1,13 +1,17 @@
 
 const ImgCard =  ({
     smallImg,
-    description,
+  description,
+  openModal,
+    regularImg
 }) => {
     return (
-    <div>
-      <img src={smallImg} alt={description} width='300' height='300'/>
-    </div>
-  );
+      <div>
+        <button onClick={()=>openModal(regularImg)}> 
+          <img src={smallImg} alt={description} width="300" height="300" />
+        </button>
+      </div>
+    );
 }
 
 export default ImgCard

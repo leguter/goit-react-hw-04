@@ -6,6 +6,8 @@ import iziToast from 'izitoast';
 import Loader from './components/Loader/Loader';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
+import ImageModal from './components/ImageModal/ImageModal';
+import React from "react";
 import { useEffect, useState } from 'react';
 function App() {
   const [ImgData, setData] = useState([])
@@ -14,6 +16,22 @@ function App() {
   const [err, setErr] = useState(false)
   const [totalPages, setTotalPages] = useState(null)
   const [page, setPage] = useState(1)
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [urlModalImg, setUrlModalImg] = useState('')
+   let subtitle;
+   function openModal(value) {
+     setIsOpen(true);
+     setUrlModalImg(value);
+   }
+
+   function afterOpenModal() {
+     // references are now sync'd and can be accessed.
+     subtitle.style.color = "#f00";
+   }
+  function closeModal() {
+    setIsOpen(false);
+  }
+ 
   const sendQuery = (searchValue) => {
  
     setQuery(searchValue);
@@ -57,7 +75,20 @@ function App() {
       {loader !== false && <Loader />}
       {err === true && <ErrorMessage />}
       {query !== null && (
-        <ImageGallery dataImgs={ImgData} fncSubmit={sendQuery} />
+        <ImageGallery
+          dataImgs={ImgData}
+          fncSubmit={sendQuery}
+          openModal={openModal}
+          setUrlModalImg={setUrlModalImg}
+        />
+      )}
+      {query !== null && (
+        <ImageModal
+          afterOpenModal={afterOpenModal}
+          modalIsOpen={modalIsOpen}
+          imgModal={urlModalImg}
+          closeModal={closeModal}
+        />
       )}
       {maxPage > page && <LoadMoreBtn loadMore={loadMore} />}
     </>
