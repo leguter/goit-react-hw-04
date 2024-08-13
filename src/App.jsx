@@ -14,19 +14,18 @@ function App() {
   const [err, setErr] = useState(false)
   const [totalPages, setTotalPages] = useState(null)
   const [page, setPage] = useState(1)
-  const [perPage, setPerPage] = useState(12)
   const sendQuery = (searchValue) => {
  
     setQuery(searchValue);
   }
   const maxPage = Math.round(totalPages / (12 * page))
   useEffect(() => {
-    async function getImgs(word, page, perPage) {
+    async function getImgs(word, page) {
       if( word === null) return
       try {
         setLoader(true)
         const response = await axios.get(
-          `https://api.unsplash.com/search/photos?client_id=vKuo5q6BtAb4eyT7HMIcPesAbRlmfSav8y4iXt9ouF0&query=${word}&per_page=${perPage}&page=${page}`
+          `https://api.unsplash.com/search/photos?client_id=vKuo5q6BtAb4eyT7HMIcPesAbRlmfSav8y4iXt9ouF0&query=${word}&per_page=12&page=${page}`
         );
         if (response.data.results.length === 0) {
           setLoader(false)
@@ -34,7 +33,7 @@ function App() {
           setErr(true)
           return;
         } else {
-          setData(response.data.results);
+          setData((imgData) => [...imgData, ...response.data.results]);
           setTotalPages(response.data.total)
         }
       } catch (error) {
@@ -44,13 +43,12 @@ function App() {
       }
     }
     getImgs(
-      query, page, perPage
+      query, page
      );
-  }, [query,page,perPage])
+  }, [query,page])
   const loadMore = () => {
     if (maxPage > page) {
       setPage(page + 1)
-      setPerPage(perPage + 12 ); 
     }
   };
   return (
