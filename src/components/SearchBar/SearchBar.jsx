@@ -10,10 +10,11 @@ const SearchBar = ({
   const handleSubmit = (values, actions) => {
     if (values.search.trim() === "") {
       iziToast.error("You need enter text for searching images");
-    } else {
+      return
+    } 
       sendQuery(values.search);
       actions.resetForm();
-    }
+    
     
   };
   return (
