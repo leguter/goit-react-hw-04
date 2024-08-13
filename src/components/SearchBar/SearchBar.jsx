@@ -1,5 +1,6 @@
 import { Formik, Form, Field } from "formik"
 import iziToast from "izitoast";
+import css from './SearchBar.module.css'
 const SearchBar = ({
   sendQuery,
 }
@@ -18,15 +19,16 @@ const SearchBar = ({
     
   };
   return (
-    <header>
+    <header className={css.container}>
       <Formik onSubmit={handleSubmit} initialValues={INITIAL_VALUES}>
-        <Form>
+        <Form >
           <Field
             type="text"
             placeholder="Search images and photos"
             name="search"
+            className={css.input}
           />
-          <button type="submit">Search</button>
+          <button type="submit" className={css.btnSubmit}>Search</button>
         </Form>
       </Formik>
     </header>
