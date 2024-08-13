@@ -6,12 +6,13 @@ const SearchBar = ({
   const INITIAL_VALUES = {
     search: '',
   }
-  const handleSubmit = (values) => {
-    sendQuery(values.search)
- }
+  const handleSubmit = (values, actions) => {
+    sendQuery(values.search);
+    actions.resetForm();
+  };
   return (
-    <Formik onSubmit={handleSubmit} initialValues={INITIAL_VALUES}>
-      
+    <header>
+      <Formik onSubmit={handleSubmit} initialValues={INITIAL_VALUES}>
         <Form>
           <Field
             type="text"
@@ -20,7 +21,8 @@ const SearchBar = ({
           />
           <button type="submit">Search</button>
         </Form>
-    </Formik>
+      </Formik>
+    </header>
   );
 }
    
