@@ -1,4 +1,5 @@
-import { Formik, Form,Field } from "formik"
+import { Formik, Form, Field } from "formik"
+import iziToast from "izitoast";
 const SearchBar = ({
   sendQuery,
 }
@@ -7,8 +8,13 @@ const SearchBar = ({
     search: '',
   }
   const handleSubmit = (values, actions) => {
-    sendQuery(values.search);
-    actions.resetForm();
+    if (values.search.trim() === "") {
+      iziToast.error("You need enter text for searching images");
+    } else {
+      sendQuery(values.search);
+      actions.resetForm();
+    }
+    
   };
   return (
     <header>

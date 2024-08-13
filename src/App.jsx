@@ -8,11 +8,8 @@ function App() {
   const [ImgData, setData] = useState([])
   const [query, setQuery] = useState(null)
   const sendQuery = (searchValue) => {
-  if (searchValue.trim() === "") {
-    iziToast.error("You need enter text for searching images");
-  } else {
+ 
     setQuery(searchValue);
-    }
   }
   useEffect(() => {
     async function getImgs(word, page) {
