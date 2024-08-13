@@ -14,7 +14,7 @@ function App() {
   const [err, setErr] = useState(false)
   const [totalPages, setTotalPages] = useState(null)
   const [page, setPage] = useState(1)
-  let perPage = 12;
+  const [perPage, setPerPage] = useState(12)
   const sendQuery = (searchValue) => {
  
     setQuery(searchValue);
@@ -50,7 +50,7 @@ function App() {
   const loadMore = () => {
     if (maxPage > page) {
       setPage(page + 1)
-      perPage = perPage * 2 
+      setPerPage(perPage + 12 ); 
     }
   };
   return (
