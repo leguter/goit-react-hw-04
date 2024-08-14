@@ -35,6 +35,8 @@ function App() {
   const maxPage = Math.round(totalPages / (12 * page))
   useEffect(() => {
     async function getImgs(word, page) {
+      setData([])
+      setPage(1)
       if( word === null) return
       try {
         setLoader(true)
